@@ -24,7 +24,7 @@ System.registerDynamic('src/youtube-player.component', ['@angular/core', './yout
             this.playerService.setupPlayer(htmlId, {
                 ready: this.ready,
                 change: this.change
-            }, playerSize);
+            }, playerSize, this.videoId);
         };
         YoutubePlayer.prototype.ngOnInit = function () {};
         YoutubePlayer.prototype.playVideo = function () {
@@ -118,11 +118,11 @@ System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular
             playerApiScript.src = "http://www.youtube.com/iframe_api";
             doc.body.appendChild(playerApiScript);
         };
-        YoutubePlayerService.prototype.setupPlayer = function (elementId, outputs, sizes) {
+        YoutubePlayerService.prototype.setupPlayer = function (elementId, outputs, sizes, videoId) {
             var _this = this;
             var createPlayer = function () {
                 if (browser_1.window.YT.Player) {
-                    _this.createPlayer(elementId, outputs, sizes);
+                    _this.createPlayer(elementId, outputs, sizes, videoId);
                 }
             };
             this.api.subscribe(createPlayer);
@@ -145,7 +145,7 @@ System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular
             var isPlayerPlaying = isPlayerReady ? playerState !== YT.PlayerState.ENDED && playerState !== YT.PlayerState.PAUSED : false;
             return isPlayerPlaying;
         };
-        YoutubePlayerService.prototype.createPlayer = function (elementId, outputs, sizes) {
+        YoutubePlayerService.prototype.createPlayer = function (elementId, outputs, sizes, videoId) {
             var _this = this;
             var service = this;
             var playerSize = {
@@ -153,7 +153,7 @@ System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular
                 width: sizes.width || this.defaultSizes.width
             };
             return new browser_1.window.YT.Player(elementId, Object.assign({}, playerSize, {
-                videoId: '',
+                videoId: videoId || '',
                 // playerVars: playerVars,
                 events: {
                     onReady: function (ev) {

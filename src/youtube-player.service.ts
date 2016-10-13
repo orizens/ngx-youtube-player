@@ -42,10 +42,10 @@ export class YoutubePlayerService {
     doc.body.appendChild(playerApiScript);
   }
 
-  setupPlayer (elementId: string, outputs: PlayerOutputs, sizes: PlayerSize) {
+  setupPlayer (elementId: string, outputs: PlayerOutputs, sizes: PlayerSize, videoId: string) {
     const createPlayer = () => {
       if (window.YT.Player) {
-        this.createPlayer(elementId, outputs, sizes);
+        this.createPlayer(elementId, outputs, sizes, videoId);
       }
     };
     this.api.subscribe(createPlayer);
@@ -75,14 +75,14 @@ export class YoutubePlayerService {
     return isPlayerPlaying;
   }
 
-  createPlayer (elementId: string, outputs: PlayerOutputs, sizes: PlayerSize) {
+  createPlayer (elementId: string, outputs: PlayerOutputs, sizes: PlayerSize, videoId: string) {
     const service = this;
     const playerSize = {
       height: sizes.height || this.defaultSizes.height,
       width: sizes.width || this.defaultSizes.width
     };
     return new window.YT.Player(elementId, Object.assign({}, playerSize, {
-      videoId: '',
+      videoId: videoId || '',
       // playerVars: playerVars,
       events: {
           onReady: (ev: any) => {

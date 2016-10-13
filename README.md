@@ -18,6 +18,7 @@ Currently supported attributes:
 ### Inputs
 * **height** (number) - optional height for the player
 * **width** (number) - optional width for the player
+* **videoId** (string) - will load the specified video by id
 
 ### outputs
 * **ready** (YT.Player) - implements youtube's player onReady event -> sends a the new created yt player instance  

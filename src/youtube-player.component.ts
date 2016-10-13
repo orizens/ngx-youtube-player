@@ -36,7 +36,7 @@ export class YoutubePlayer implements OnInit, AfterContentInit {
 		this.playerService.setupPlayer(htmlId, {
 			ready: this.ready,
 			change: this.change
-		}, playerSize);
+		}, playerSize, this.videoId);
 	}
 
 	ngOnInit (){
