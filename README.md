@@ -25,7 +25,7 @@ Currently supported attributes:
 * **change** - a state change event channeling the youtube's player instance state event object
 
 ## DEMO
-
+[A Live Demo In Plnkr](http://plnkr.co/edit/JtTJnQY2G8IE3IV6tFkx?p=preview)
 
 ## Usage
 First, import the YoutubePlayerModule to your module:
@@ -55,16 +55,24 @@ import { Component } from '@angular/core';
 @Component({
 	selector: 'app',
 	template: `
-		<youtube-player (init)="savePlayer($event)"></youtube-player>
+		<youtube-player
+      [videoId]="id"
+      (ready)="savePlayer($event)"
+      (change)="onStateChange($event)"
+    ></youtube-player>
 	`
 })
 export class AppComponent {
   player: YT.Player;
+  private id: string = 'qDuKsiwS5xw';
 
 	savePlayer (player) {
     this.player = player;
     console.log('player instance', player)
 	}
+  onStateChange(event){
+    console.log('player state', event.data);
+  }
 }
 ```
 
