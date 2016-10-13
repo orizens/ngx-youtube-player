@@ -2,7 +2,6 @@ import { Http, URLSearchParams, Response } from '@angular/http';
 import { Injectable, NgZone, EventEmitter } from '@angular/core';
 import { window } from '@angular/platform-browser/src/facade/browser';
 import { ReplaySubject } from 'rxjs/ReplaySubject'
-const uid = require('uid');
 
 export interface PlayerOutputs {
   ready?: EventEmitter<YT.Player>;
@@ -125,7 +124,9 @@ export class YoutubePlayerService {
     // TODO: dispatch event
   }
 
+  // adpoted from uid
   generateUniqueId () {
-    return uid();
+    const len = 7;
+    return Math.random().toString(35).substr(2, len);
   }
 }

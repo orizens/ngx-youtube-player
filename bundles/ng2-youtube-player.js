@@ -60,30 +60,7 @@ System.registerDynamic('src/youtube-player.component', ['@angular/core', './yout
     exports.YoutubePlayer = YoutubePlayer;
     return module.exports;
 });
-System.registerDynamic("node_modules/uid/index", [], true, function ($__require, exports, module) {
-  var define,
-      global = this || self,
-      GLOBAL = global;
-  /**
-   * Export `uid`
-   */
-
-  module.exports = uid;
-
-  /**
-   * Create a `uid`
-   *
-   * @param {String} len
-   * @return {String} uid
-   */
-
-  function uid(len) {
-    len = len || 7;
-    return Math.random().toString(35).substr(2, len);
-  }
-  return module.exports;
-});
-System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular/platform-browser/src/facade/browser', 'rxjs/ReplaySubject', 'uid'], true, function ($__require, exports, module) {
+System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular/platform-browser/src/facade/browser', 'rxjs/ReplaySubject'], true, function ($__require, exports, module) {
     "use strict";
 
     var define,
@@ -92,7 +69,6 @@ System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular
     var core_1 = $__require('@angular/core');
     var browser_1 = $__require('@angular/platform-browser/src/facade/browser');
     var ReplaySubject_1 = $__require('rxjs/ReplaySubject');
-    var uid = $__require('uid');
     var YoutubePlayerService = function () {
         function YoutubePlayerService(zone) {
             this.zone = zone;
@@ -191,8 +167,10 @@ System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular
             player.setSize(width, height);
             // TODO: dispatch event
         };
+        // adpoted from uid
         YoutubePlayerService.prototype.generateUniqueId = function () {
-            return uid();
+            var len = 7;
+            return Math.random().toString(35).substr(2, len);
         };
         YoutubePlayerService.decorators = [{ type: core_1.Injectable }];
         /** @nocollapse */
