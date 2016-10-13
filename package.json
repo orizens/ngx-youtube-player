@@ -1,6 +1,6 @@
 {
   "name": "ng2-youtube-player",
-  "version": "0.0.0",
+  "version": "0.0.1-0",
   "description": "A Youtube Player Component for angular2",
   "main": "ng2-youtube-player.js",
   "typings": "./ng2-youtube-player.d.ts",
