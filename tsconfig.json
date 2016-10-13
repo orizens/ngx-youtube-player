@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "target": "es5",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "declaration": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "moduleResolution": "node",
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    "types": [
+      /*"core-js",*/
+      "jasmine",
+      "node",
+      "youtube"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "bundles"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
+  },
+  "files": [
+    /*"./ng2-youtube-player.d.ts",*/
+    "./ng2-youtube-player.ts",
+    "./src/youtube-player.component.ts",
+    "./src/youtube-player.service.ts",
+    "./src/index.ts"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "./src/ngfactory",
+    "debug": false
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": { "rewriteTsconfig": false }
+}
