@@ -1,11 +1,10 @@
-System.registerDynamic('src/youtube-player.component', ['@angular/core', 'rxjs/add/operator/take', './youtube-player.service'], true, function ($__require, exports, module) {
+System.registerDynamic('src/youtube-player.component', ['@angular/core', './youtube-player.service'], true, function ($__require, exports, module) {
     "use strict";
 
     var define,
         global = this || self,
         GLOBAL = global;
     var core_1 = $__require('@angular/core');
-    $__require('rxjs/add/operator/take');
     var youtube_player_service_1 = $__require('./youtube-player.service');
     var YoutubePlayer = function () {
         function YoutubePlayer(playerService, elementRef) {
