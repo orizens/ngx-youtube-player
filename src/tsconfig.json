@@ -16,9 +16,6 @@
       "jasmine",
       "node",
       "youtube"
-    ],
-    "typeRoots": [
-      "../node_modules/@types"
     ]
   },
   "exclude": [

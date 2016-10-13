@@ -30,10 +30,10 @@
     "useWebpackText": true
   },
   "files": [
-    /*"./ng2-youtube-player.d.ts",*/
     "./ng2-youtube-player.ts",
     "./src/youtube-player.component.ts",
     "./src/youtube-player.service.ts",
+    "./src/youtube-player.service.spec.ts",
     "./src/index.ts"
   ],
   "angularCompilerOptions": {
