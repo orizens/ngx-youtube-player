@@ -5,7 +5,22 @@ This is an angular 2 component based on [youtube player iframe api](https://deve
 This component came out as a result of the [open source project Echoes Player](http://github.com/orizens/echoes-ng2) - an alternative player for watching and listening to media from youtube.
 
 ## Angular 2 Support
-Updated to support Angular 2 - **Final - 2.0.0**
+Updated to support Angular 2 - **Final - 2.0.1**
+
+## LICENSE
+Angular 2 Youtube Component includes 2 optional licenses:  
+1. **Free** - for open source projects - includes standard play features, released under **MIT** license.  
+2. **Commercial (Enterprize)** - **you must purchase a license**, includes the following features:
+  - standard play features
+  - playlist support (without ads)
+  - auto play next track in playlist
+  - upgrades for 1 year
+  - online support for 1 year
+  - License types:
+    - app developer ($200) - a license for each developer working with this component for one product only
+    - platform developer ($550) - a license for each developer developer working with component for all products in one company 
+   
+To purchase a license, please contact at http://orizens.com/contact
 
 ## Installation
 ```
