@@ -5,7 +5,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject'
 
 export interface PlayerOutputs {
   ready?: EventEmitter<YT.Player>;
-  change?: EventEmitter<Object | any>;
+  change?: EventEmitter<YT.EventArgs>;
 }
 
 export interface PlayerSize {
@@ -15,7 +15,7 @@ export interface PlayerSize {
 
 @Injectable()
 export class YoutubePlayerService {
-  api: ReplaySubject<any>;
+  api: ReplaySubject<YT.Player>;
 
   private isFullscreen: boolean = false;
   private defaultSizes = {
@@ -29,7 +29,7 @@ export class YoutubePlayerService {
 
   private createApi () {
     this.api = new ReplaySubject(1);
-    const onYouTubeIframeAPIReady = () => { this.api.next(window.YT) }
+    const onYouTubeIframeAPIReady = () => { window && this.api.next(<any>window.YT) }
     window['onYouTubeIframeAPIReady'] = onYouTubeIframeAPIReady;
   }
 
@@ -84,10 +84,10 @@ export class YoutubePlayerService {
       videoId: videoId || '',
       // playerVars: playerVars,
       events: {
-          onReady: (ev: any) => {
+          onReady: (ev: YT.EventArgs) => {
             this.zone.run(() => outputs.ready && outputs.ready.next(ev.target));
           },
-          onStateChange: (ev: any) => {
+          onStateChange: (ev: YT.EventArgs) => {
             this.zone.run(() => outputs.change && outputs.change.next(ev));
             // this.zone.run(() => onPlayerStateChange(ev));
           }
