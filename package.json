@@ -7,7 +7,10 @@
   "repository": "orizens/ng2-youtube-player",
   "scripts": {
     "build:test": "tsc --project ./src",
-    "clean": "rimraf src/*.js && rimraf src/*.d.ts && rimraf ./*scroll.js && rimraf ./*scroll.d.ts",
+    "clean": "npm run clean:js && npm run clean:def && npm run clean:aot",
+    "clean:def": "rimraf src/*.d.ts && rimraf ./*scroll.d.ts",
+    "clean:js": "rimraf src/*.js && rimraf ./*scroll.js",
+    "clean:aot": "rimraf src/*metadata.json && rimraf ./*metadata.json",
     "clean:node": "rimraf node_modules",
     "dev": "npm run watch & karma start karma.conf.js --bdd",
     "lite": "lite-server",
