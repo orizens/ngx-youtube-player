@@ -16,10 +16,14 @@
       "jasmine",
       "node",
       "youtube"
+    ],
+    "typeRoots": [
+      "../../node_modules/@types"
     ]
   },
   "exclude": [
     "node_modules",
+    "!/node_modules/@types",
     ".tmp"
     ],
   "awesomeTypescriptLoaderOptions": {
