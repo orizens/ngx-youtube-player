@@ -12,3 +12,5 @@ Thumbs.db
 
 # ngc generated files
 src/ngFactory
+
+examples/webpack/node_modules
