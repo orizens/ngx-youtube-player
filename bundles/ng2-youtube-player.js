@@ -1,8 +1,7 @@
 System.registerDynamic('src/youtube-player.component', ['@angular/core', './youtube-player.service'], true, function ($__require, exports, module) {
     "use strict";
 
-    var define,
-        global = this || self,
+    var global = this || self,
         GLOBAL = global;
     var core_1 = $__require('@angular/core');
     var youtube_player_service_1 = $__require('./youtube-player.service');
@@ -26,27 +25,15 @@ System.registerDynamic('src/youtube-player.component', ['@angular/core', './yout
                 change: this.change
             }, playerSize, this.videoId);
         };
-        YoutubePlayer.prototype.ngOnInit = function () {};
-        YoutubePlayer.prototype.playVideo = function () {
-            // this.playerService.play();
-            // this.play.next(this.player.media);
-        };
-        YoutubePlayer.prototype.pauseVideo = function () {
-            // this.playerService.pause();
-        };
-        YoutubePlayer.prototype.togglePlayer = function () {
-            // this.playerService.togglePlayer();
-        };
-        YoutubePlayer.prototype.playNextTrack = function () {
-            // this.playNext.next(this.player);
-        };
         YoutubePlayer.decorators = [{ type: core_1.Component, args: [{
                 selector: 'youtube-player',
                 template: "\n\t\t<div id=\"yt-player-ng2-component\" #ytPlayerContainer></div>\n\t",
                 changeDetection: core_1.ChangeDetectionStrategy.OnPush
             }] }];
         /** @nocollapse */
-        YoutubePlayer.ctorParameters = [{ type: youtube_player_service_1.YoutubePlayerService }, { type: core_1.ElementRef }];
+        YoutubePlayer.ctorParameters = function () {
+            return [{ type: youtube_player_service_1.YoutubePlayerService }, { type: core_1.ElementRef }];
+        };
         YoutubePlayer.propDecorators = {
             'videoId': [{ type: core_1.Input }],
             'height': [{ type: core_1.Input }],
@@ -58,16 +45,13 @@ System.registerDynamic('src/youtube-player.component', ['@angular/core', './yout
         return YoutubePlayer;
     }();
     exports.YoutubePlayer = YoutubePlayer;
-    return module.exports;
 });
-System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular/platform-browser/src/facade/browser', 'rxjs/ReplaySubject'], true, function ($__require, exports, module) {
+System.registerDynamic('src/youtube-player.service', ['@angular/core', 'rxjs/ReplaySubject'], true, function ($__require, exports, module) {
     "use strict";
 
-    var define,
-        global = this || self,
+    var global = this || self,
         GLOBAL = global;
     var core_1 = $__require('@angular/core');
-    var browser_1 = $__require('@angular/platform-browser/src/facade/browser');
     var ReplaySubject_1 = $__require('rxjs/ReplaySubject');
     var YoutubePlayerService = function () {
         function YoutubePlayerService(zone) {
@@ -79,16 +63,37 @@ System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular
             };
             this.createApi();
         }
+        Object.defineProperty(YoutubePlayerService, "win", {
+            get: function () {
+                return window;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(YoutubePlayerService, "YT", {
+            get: function () {
+                return YoutubePlayerService.win['YT'];
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(YoutubePlayerService, "Player", {
+            get: function () {
+                return YoutubePlayerService.YT.Player;
+            },
+            enumerable: true,
+            configurable: true
+        });
         YoutubePlayerService.prototype.createApi = function () {
             var _this = this;
             this.api = new ReplaySubject_1.ReplaySubject(1);
             var onYouTubeIframeAPIReady = function () {
-                _this.api.next(browser_1.window.YT);
+                YoutubePlayerService.win && _this.api.next(YoutubePlayerService.YT);
             };
-            browser_1.window['onYouTubeIframeAPIReady'] = onYouTubeIframeAPIReady;
+            YoutubePlayerService.win['onYouTubeIframeAPIReady'] = onYouTubeIframeAPIReady;
         };
         YoutubePlayerService.prototype.loadPlayerApi = function () {
-            var doc = browser_1.window.document;
+            var doc = YoutubePlayerService.win.document;
             var playerApiScript = doc.createElement("script");
             playerApiScript.type = "text/javascript";
             playerApiScript.src = "http://www.youtube.com/iframe_api";
@@ -97,7 +102,7 @@ System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular
         YoutubePlayerService.prototype.setupPlayer = function (elementId, outputs, sizes, videoId) {
             var _this = this;
             var createPlayer = function () {
-                if (browser_1.window.YT.Player) {
+                if (YoutubePlayerService.Player) {
                     _this.createPlayer(elementId, outputs, sizes, videoId);
                 }
             };
@@ -128,7 +133,7 @@ System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular
                 height: sizes.height || this.defaultSizes.height,
                 width: sizes.width || this.defaultSizes.width
             };
-            return new browser_1.window.YT.Player(elementId, Object.assign({}, playerSize, {
+            return new YoutubePlayerService.Player(elementId, Object.assign({}, playerSize, {
                 videoId: videoId || '',
                 // playerVars: playerVars,
                 events: {
@@ -145,15 +150,15 @@ System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular
                     }
                 }
             }));
+            // TODO: DEPRECATE?
             function onPlayerStateChange(event) {
                 var state = event.data;
+                var PlayerState = YoutubePlayerService.YT.PlayerState;
                 // play the next song if its not the end of the playlist
                 // should add a "repeat" feature
-                if (state === YT.PlayerState.ENDED) {}
-                if (state === YT.PlayerState.PAUSED) {}
-                if (state === YT.PlayerState.PLAYING) {}
-                // console.log('state changed', state);
-                // dispatch STATE CHANGE
+                if (state === PlayerState.ENDED) {}
+                if (state === PlayerState.PAUSED) {}
+                if (state === PlayerState.PLAYING) {}
             }
         };
         YoutubePlayerService.prototype.toggleFullScreen = function (player, isFullScreen) {
@@ -161,8 +166,8 @@ System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular
                 height = _a.height,
                 width = _a.width;
             if (!isFullScreen) {
-                height = browser_1.window.innerHeight;
-                width = browser_1.window.innerWidth;
+                height = window.innerHeight;
+                width = window.innerWidth;
             }
             player.setSize(width, height);
             // TODO: dispatch event
@@ -174,17 +179,17 @@ System.registerDynamic('src/youtube-player.service', ['@angular/core', '@angular
         };
         YoutubePlayerService.decorators = [{ type: core_1.Injectable }];
         /** @nocollapse */
-        YoutubePlayerService.ctorParameters = [{ type: core_1.NgZone }];
+        YoutubePlayerService.ctorParameters = function () {
+            return [{ type: core_1.NgZone }];
+        };
         return YoutubePlayerService;
     }();
     exports.YoutubePlayerService = YoutubePlayerService;
-    return module.exports;
 });
 System.registerDynamic('src/index', ['@angular/core', '@angular/common', './youtube-player.component', './youtube-player.service'], true, function ($__require, exports, module) {
     "use strict";
 
-    var define,
-        global = this || self,
+    var global = this || self,
         GLOBAL = global;
     var core_1 = $__require('@angular/core');
     var common_1 = $__require('@angular/common');
@@ -199,17 +204,17 @@ System.registerDynamic('src/index', ['@angular/core', '@angular/common', './yout
                 providers: [youtube_player_service_1.YoutubePlayerService]
             }] }];
         /** @nocollapse */
-        YoutubePlayerModule.ctorParameters = [];
+        YoutubePlayerModule.ctorParameters = function () {
+            return [];
+        };
         return YoutubePlayerModule;
     }();
     exports.YoutubePlayerModule = YoutubePlayerModule;
-    return module.exports;
 });
 System.registerDynamic('ng2-youtube-player', ['./src/youtube-player.component', './src/youtube-player.service', './src/index'], true, function ($__require, exports, module) {
     "use strict";
 
-    var define,
-        global = this || self,
+    var global = this || self,
         GLOBAL = global;
     function __export(m) {
         for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -223,5 +228,4 @@ System.registerDynamic('ng2-youtube-player', ['./src/youtube-player.component', 
     exports.default = {
         directives: [youtube_player_component_1.YoutubePlayer, youtube_player_service_1.YoutubePlayerService]
     };
-    return module.exports;
 });
