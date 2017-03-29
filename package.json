@@ -23,7 +23,8 @@
     "test": "karma start karma.conf.js",
     "typings": "typings",
     "version": "git add ./",
-    "watch": "tsc --project ./src --watch"
+    "watch": "tsc --project ./src --watch",
+    "ngc": "ngc"
   },
   "keywords": [
     "angular2",
@@ -33,15 +34,15 @@
   "author": "Oren Farhi",
   "license": "MIT",
   "devDependencies": {
-    "@angular/common": "2.0.1",
-    "@angular/compiler": "2.0.1",
-    "@angular/compiler-cli": "^0.6.2",
-    "@angular/core": "2.0.1",
-    "@angular/http": "2.0.1",
-    "@angular/platform-browser": "2.0.1",
-    "@angular/platform-browser-dynamic": "2.0.1",
-    "@types/core-js": "^0.9.32",
-    "@types/jasmine": "^2.2.33",
+    "@angular/common": "2.3.1",
+    "@angular/compiler": "2.3.1",
+    "@angular/compiler-cli": "2.3.1",
+    "@angular/core": "2.3.1",
+    "@angular/http": "2.3.1",
+    "@angular/platform-browser": "2.3.1",
+    "@angular/platform-browser-dynamic": "2.3.1",
+    "@types/core-js": "0.9.32",
+    "@types/jasmine": "2.2.33",
     "@types/node": "^6.0.38",
     "@types/youtube": "0.0.27",
     "autodts": "0.0.6",
@@ -63,7 +64,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "reflect-metadata": "0.1.2",
     "rimraf": "2.5.2",
-    "rxjs": "5.0.0-beta.12",
+    "rxjs": "5.0.0-rc.4",
     "source-map-loader": "^0.1.5",
     "systemjs": "0.19.31",
     "systemjs-builder": "^0.15.16",
@@ -73,6 +74,6 @@
     "typescript": "2.0.3",
     "typings": "1.2.0",
     "webpack": "2.1.0-beta.21",
-    "zone.js": "^0.6.17"
+    "zone.js": "0.7.8"
   }
 }
