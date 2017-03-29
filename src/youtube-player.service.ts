@@ -1,6 +1,5 @@
 import { Http, URLSearchParams, Response } from '@angular/http';
 import { Injectable, NgZone, EventEmitter } from '@angular/core';
-import { window } from '@angular/platform-browser/src/facade/browser';
 import { ReplaySubject } from 'rxjs/ReplaySubject'
 
 export interface PlayerOutputs {
@@ -15,6 +14,18 @@ export interface PlayerSize {
 
 @Injectable()
 export class YoutubePlayerService {
+  static get win () {
+    return window;
+  }
+
+  static get YT() {
+    return YoutubePlayerService.win['YT'];
+  }
+
+  static get Player() {
+    return YoutubePlayerService.YT.Player;
+  }
+
   api: ReplaySubject<YT.Player>;
 
   private isFullscreen: boolean = false;
@@ -29,12 +40,12 @@ export class YoutubePlayerService {
 
   private createApi () {
     this.api = new ReplaySubject(1);
-    const onYouTubeIframeAPIReady = () => { window && this.api.next(<any>window.YT) }
-    window['onYouTubeIframeAPIReady'] = onYouTubeIframeAPIReady;
+    const onYouTubeIframeAPIReady = () => { YoutubePlayerService.win && this.api.next(<any>YoutubePlayerService.YT) }
+    YoutubePlayerService.win['onYouTubeIframeAPIReady'] = onYouTubeIframeAPIReady;
   }
 
   loadPlayerApi () {
-    const doc = window.document;
+    const doc = YoutubePlayerService.win.document;
     let playerApiScript = doc.createElement("script");
     playerApiScript.type = "text/javascript";
     playerApiScript.src = "http://www.youtube.com/iframe_api";
@@ -43,7 +54,7 @@ export class YoutubePlayerService {
 
   setupPlayer (elementId: string, outputs: PlayerOutputs, sizes: PlayerSize, videoId: string) {
     const createPlayer = () => {
-      if (window.YT.Player) {
+      if (YoutubePlayerService.Player) {
         this.createPlayer(elementId, outputs, sizes, videoId);
       }
     };
@@ -80,7 +91,7 @@ export class YoutubePlayerService {
       height: sizes.height || this.defaultSizes.height,
       width: sizes.width || this.defaultSizes.width
     };
-    return new window.YT.Player(elementId, Object.assign({}, playerSize, {
+    return new YoutubePlayerService.Player(elementId, Object.assign({}, playerSize, {
       videoId: videoId || '',
       // playerVars: playerVars,
       events: {
@@ -94,22 +105,22 @@ export class YoutubePlayerService {
       }
     }));
 
+    // TODO: DEPRECATE?
     function onPlayerStateChange (event: any) {
       const state = event.data;
+      const PlayerState = YoutubePlayerService.YT.PlayerState;
       // play the next song if its not the end of the playlist
       // should add a "repeat" feature
-      if (state === YT.PlayerState.ENDED) {
+      if (state === PlayerState.ENDED) {
 
       }
 
-      if (state === YT.PlayerState.PAUSED) {
-          // service.playerState = YT.PlayerState.PAUSED;
+      if (state === PlayerState.PAUSED) {
+          // service.playerState = PlayerState.PAUSED;
       }
-      if (state === YT.PlayerState.PLAYING) {
-          // service.playerState = YT.PlayerState.PLAYING;
+      if (state === PlayerState.PLAYING) {
+          // service.playerState = PlayerState.PLAYING;
       }
-      // console.log('state changed', state);
-      // dispatch STATE CHANGE
     }
   }
 

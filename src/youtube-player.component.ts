@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, OnInit, AfterContentInit, ElementRef, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, AfterContentInit, ElementRef, ViewChild } from '@angular/core';
 
 import { YoutubePlayerService } from './youtube-player.service';
 
@@ -10,7 +9,7 @@ import { YoutubePlayerService } from './youtube-player.service';
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class YoutubePlayer implements OnInit, AfterContentInit {
+export class YoutubePlayer implements AfterContentInit {
 	@Input() videoId: string = '';
 	@Input() height: number;
 	@Input() width: number;
@@ -37,25 +36,5 @@ export class YoutubePlayer implements OnInit, AfterContentInit {
 			ready: this.ready,
 			change: this.change
 		}, playerSize, this.videoId);
-	}
-
-	ngOnInit (){
-	}
-
-	playVideo () {
-		// this.playerService.play();
-		// this.play.next(this.player.media);
-	}
-
-	pauseVideo () {
-		// this.playerService.pause();
-	}
-
-	togglePlayer () {
-		// this.playerService.togglePlayer();
-	}
-
-	playNextTrack () {
-		// this.playNext.next(this.player);
 	}
 }
