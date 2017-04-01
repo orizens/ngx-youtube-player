@@ -48,7 +48,7 @@ export class YoutubePlayerService {
     const doc = YoutubePlayerService.win.document;
     let playerApiScript = doc.createElement("script");
     playerApiScript.type = "text/javascript";
-    playerApiScript.src = "http://www.youtube.com/iframe_api";
+    playerApiScript.src = "https://www.youtube.com/iframe_api";
     doc.body.appendChild(playerApiScript);
   }
 
