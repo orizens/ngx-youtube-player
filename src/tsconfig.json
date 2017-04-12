@@ -37,6 +37,10 @@
     "./index.ts"
   ],
   "compileOnSave": false,
+  "angularCompilerOptions": {
+    "genDir": "./ngfactory",
+    "debug": false
+  },
   "buildOnSave": false,
   "atom": { "rewriteTsconfig": false }
 }
