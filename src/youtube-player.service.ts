@@ -4,7 +4,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject'
 
 export interface PlayerOutputs {
   ready?: EventEmitter<YT.Player>;
-  change?: EventEmitter<YT.EventArgs>;
+  change?: EventEmitter<YT.PlayerEvent>;
 }
 
 export interface PlayerSize {
@@ -98,10 +98,10 @@ export class YoutubePlayerService {
       videoId: videoId || '',
       // playerVars: playerVars,
       events: {
-          onReady: (ev: YT.EventArgs) => {
+          onReady: (ev: YT.PlayerEvent) => {
             this.zone.run(() => outputs.ready && outputs.ready.next(ev.target));
           },
-          onStateChange: (ev: YT.EventArgs) => {
+          onStateChange: (ev: YT.PlayerEvent) => {
             this.zone.run(() => outputs.change && outputs.change.next(ev));
             // this.zone.run(() => onPlayerStateChange(ev));
           }

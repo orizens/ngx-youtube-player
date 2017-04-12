@@ -44,7 +44,7 @@
     "@types/core-js": "0.9.32",
     "@types/jasmine": "2.2.33",
     "@types/node": "^6.0.38",
-    "@types/youtube": "0.0.27",
+    "@types/youtube": "0.0.29",
     "autodts": "0.0.6",
     "awesome-typescript-loader": "^2.2.4",
     "es6-promise": "^3.0.2",
