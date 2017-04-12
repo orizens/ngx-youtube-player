@@ -21,7 +21,8 @@ export class YoutubePlayer implements AfterContentInit {
 	// state change: send the YT event with its state
 	@Output() change = new EventEmitter();
 
-	@ViewChild('ytPlayerContainer') private ytPlayerContainer: ElementRef;
+	/*@internal*/
+	@ViewChild('ytPlayerContainer') public ytPlayerContainer: ElementRef;
 
 	constructor(
 		public playerService: YoutubePlayerService,
