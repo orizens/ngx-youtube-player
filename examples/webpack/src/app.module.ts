@@ -2,6 +2,7 @@ import {HttpModule} from "@angular/http";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {YoutubePlayerModule} from "ng2-youtube-player";
+// import {YoutubePlayerModule} from "../../../src/index";
 import {AppComponent} from "./app.component";
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home.component";

@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "watch": "webpack --watch --progress --profile",
-    "start": "webpack-dev-server --inline --progress --port 3000"
+    "start": "webpack-dev-server --inline --progress --port 3000",
+    "build:prod": "webpack"
   },
   "dependencies": {
     "@angular/common": "2.3.1",

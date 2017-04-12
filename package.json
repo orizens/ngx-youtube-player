@@ -6,7 +6,7 @@
   "typings": "./ng2-youtube-player.d.ts",
   "repository": "orizens/ng2-youtube-player",
   "scripts": {
-    "build:test": "tsc --project ./src",
+    "build:test": "ngc --project ./src",
     "clean": "npm run clean:js && npm run clean:def && npm run clean:aot",
     "clean:def": "rimraf src/*.d.ts && rimraf ./*scroll.d.ts",
     "clean:js": "rimraf src/*.js && rimraf ./*scroll.js",
@@ -15,15 +15,15 @@
     "dev": "npm run watch & karma start karma.conf.js --bdd",
     "lite": "lite-server",
     "postversion": "git push origin master",
-    "prepublish": "node ./node_modules/@angular/compiler-cli/src/main.js && node make.js",
-    "pretest": "npm run clean && npm run build:test",
+    "prepublish": "ngc && node make.js",
+    "_pretest": "npm run clean && npm run build:test",
     "preversion": "npm run clean && npm run prepublish && npm test",
     "setup": "npm run typings -- install",
     "start": "npm run build && npm run lite",
     "test": "karma start karma.conf.js",
     "typings": "typings",
     "version": "git add ./",
-    "watch": "tsc --project ./src --watch",
+    "watch": "ngc --project ./src --watch",
     "ngc": "ngc"
   },
   "keywords": [
@@ -73,7 +73,7 @@
     "tslint-loader": "^2.1.5",
     "typescript": "2.0.3",
     "typings": "1.2.0",
-    "webpack": "2.1.0-beta.21",
+    "webpack": "2.1.0-beta.27",
     "zone.js": "0.7.8"
   }
 }

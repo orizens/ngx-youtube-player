@@ -12,7 +12,8 @@ function root(args) {
 
 module.exports = {
     resolve: {
-        extensions: ['.ts', '.js', '.html']
+        extensions: ['.ts', '.js', '.html'],
+        modules: [ 'node_modules', '../../src/']
     },
 
     devtool: 'cheap-module-source-map',
