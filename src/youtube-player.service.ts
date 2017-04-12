@@ -55,10 +55,10 @@ export class YoutubePlayerService {
     doc.body.appendChild(playerApiScript);
   }
 
-  setupPlayer (elementId: string, outputs: PlayerOutputs, sizes: PlayerSize, videoId: string) {
+  setupPlayer (elementId: string, outputs: PlayerOutputs, sizes: PlayerSize, videoId: string, playerVars: YT.PlayerVars) {
     const createPlayer = () => {
       if (YoutubePlayerService.Player) {
-        this.createPlayer(elementId, outputs, sizes, videoId);
+        this.createPlayer(elementId, outputs, sizes, videoId, playerVars);
       }
     };
     this.api.subscribe(createPlayer);
@@ -88,7 +88,7 @@ export class YoutubePlayerService {
     return isPlayerPlaying;
   }
 
-  createPlayer (elementId: string, outputs: PlayerOutputs, sizes: PlayerSize, videoId: string) {
+  createPlayer (elementId: string, outputs: PlayerOutputs, sizes: PlayerSize, videoId: string, playerVars: YT.PlayerVars = {}) {
     const service = this;
     const playerSize = {
       height: sizes.height || this.defaultSizes.height,
@@ -96,7 +96,7 @@ export class YoutubePlayerService {
     };
     return new YoutubePlayerService.Player(elementId, Object.assign({}, playerSize, {
       videoId: videoId || '',
-      // playerVars: playerVars,
+      playerVars: playerVars,
       events: {
           onReady: (ev: YT.EventArgs) => {
             this.zone.run(() => outputs.ready && outputs.ready.next(ev.target));
