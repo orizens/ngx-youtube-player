@@ -13,6 +13,7 @@ export class YoutubePlayer implements AfterContentInit {
 	@Input() videoId: string = '';
 	@Input() height: number;
 	@Input() width: number;
+	@Input() protocol: string = 'http';
 
 	// player created and initialized - sends instance of the player
 	@Output() ready = new EventEmitter<YT.Player>();
@@ -31,7 +32,9 @@ export class YoutubePlayer implements AfterContentInit {
 		const htmlId = this.playerService.generateUniqueId();
 		const playerSize = { height: this.height, width: this.width };
 		this.ytPlayerContainer.nativeElement.setAttribute('id', htmlId);
-		this.playerService.loadPlayerApi();
+		this.playerService.loadPlayerApi({
+			protocol: this.protocol
+		});
 		this.playerService.setupPlayer(htmlId, {
 			ready: this.ready,
 			change: this.change

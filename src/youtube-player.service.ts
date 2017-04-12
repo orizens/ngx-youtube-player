@@ -12,6 +12,9 @@ export interface PlayerSize {
   width?: number;
 }
 
+export interface PlayerApiScriptOptions {
+  protocol?: string;
+}
 @Injectable()
 export class YoutubePlayerService {
   static get win () {
@@ -44,11 +47,11 @@ export class YoutubePlayerService {
     YoutubePlayerService.win['onYouTubeIframeAPIReady'] = onYouTubeIframeAPIReady;
   }
 
-  loadPlayerApi () {
+  loadPlayerApi (options: PlayerApiScriptOptions) {
     const doc = YoutubePlayerService.win.document;
     let playerApiScript = doc.createElement("script");
     playerApiScript.type = "text/javascript";
-    playerApiScript.src = "http://www.youtube.com/iframe_api";
+    playerApiScript.src = `${options.protocol}://www.youtube.com/iframe_api`;
     doc.body.appendChild(playerApiScript);
   }
 
