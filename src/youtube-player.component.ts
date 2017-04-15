@@ -13,13 +13,18 @@ export class YoutubePlayer implements AfterContentInit {
 	@Input() videoId: string = '';
 	@Input() height: number;
 	@Input() width: number;
-	@Input() protocol: string = 'http';
+	/**
+	 * @description sets the protocol by the navigator object
+	 * if there is no window, it sets a default http protocol
+	 * unless the protocol is set from outside
+	 */
+	@Input() protocol: string = this.getProtocol();
 	@Input() playerVars: YT.PlayerVars = {};
 
 	// player created and initialized - sends instance of the player
 	@Output() ready = new EventEmitter<YT.Player>();
 	// state change: send the YT event with its state
-	@Output() change = new EventEmitter();
+	@Output() change = new EventEmitter<YT.EventArgs>();
 
 	/*@internal*/
 	@ViewChild('ytPlayerContainer') public ytPlayerContainer: ElementRef;
@@ -27,8 +32,7 @@ export class YoutubePlayer implements AfterContentInit {
 	constructor(
 		public playerService: YoutubePlayerService,
 		private elementRef: ElementRef
-	) {
-	}
+	) {}
 
 	ngAfterContentInit () {
 		const htmlId = this.playerService.generateUniqueId();
@@ -41,5 +45,13 @@ export class YoutubePlayer implements AfterContentInit {
 			ready: this.ready,
 			change: this.change
 		}, playerSize, this.videoId, this.playerVars);
+	}
+
+	getProtocol() {
+		const hasWindow = window && window.location;
+		const protocol = hasWindow
+			? window.location.protocol.replace(':', '')
+			: 'http';
+		return protocol;
 	}
 }
