@@ -1,20 +1,8 @@
 import { Http, URLSearchParams, Response } from '@angular/http';
 import { Injectable, NgZone, EventEmitter } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject'
+import { PlayerApiScriptOptions, PlayerOutputs, PlayerSize } from '../models';
 
-export interface PlayerOutputs {
-  ready?: EventEmitter<YT.Player>;
-  change?: EventEmitter<YT.EventArgs>;
-}
-
-export interface PlayerSize {
-  height?: number;
-  width?: number;
-}
-
-export interface PlayerApiScriptOptions {
-  protocol?: string;
-}
 @Injectable()
 export class YoutubePlayerService {
   static get win () {

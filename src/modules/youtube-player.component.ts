@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, AfterContentInit, ElementRef, ViewChild } from '@angular/core';
-
-import { YoutubePlayerService } from './youtube-player.service';
+import { YoutubePlayerService } from '../services/youtube-player.service';
 
 @Component({
 	selector: 'youtube-player',
@@ -9,7 +8,7 @@ import { YoutubePlayerService } from './youtube-player.service';
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class YoutubePlayer implements AfterContentInit {
+export class YoutubePlayerComponent implements AfterContentInit {
 	@Input() videoId: string = '';
 	@Input() height: number;
 	@Input() width: number;

@@ -1,11 +1,11 @@
 [![Build Status](https://travis-ci.org/orizens/ng2-youtube-player.svg?branch=master)](https://travis-ci.org/orizens/ng2-youtube-player)
 
-# Angular 2 Youtube Player Component
+# Angular Youtube Player Component
 This is an angular 2 component based on [youtube player iframe api](https://developers.google.com/youtube/iframe_api_reference).
 This component came out as a result of the [open source project Echoes Player](http://github.com/orizens/echoes-ng2) - an alternative player for watching and listening to media from youtube.
 
 ## Angular 2 Support
-Updated to support Angular 2 - **Final - 2.0.1**
+Updated to support Angular - **Final > 4**
 
 ## LICENSE
 Angular 2 Youtube Component includes 2 optional licenses:  

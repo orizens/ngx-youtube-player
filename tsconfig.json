@@ -1,47 +1,27 @@
 {
-  "compilerOptions": {
-    "noImplicitAny": false,
-    "module": "commonjs",
-    "target": "es5",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "declaration": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "moduleResolution": "node",
-    "lib": [
-      "dom",
-      "es6"
-    ],
-    "types": [
-      /*"core-js",*/
-      "jasmine",
-      "node",
-      "youtube"
+    "compilerOptions": {
+        "baseUrl": ".",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": false,
+        "noFallthroughCasesInSwitch": true,
+        "sourceMap": true,
+        "rootDir": ".",
+        "inlineSources": true,
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "target": "es5",
+        "skipLibCheck": true,
+        "types": [
+            "jasmine",
+            "node"
+        ]
+    },
+    "exclude": [
+        "node_modules"
     ]
-  },
-  "exclude": [
-    "node_modules",
-    "!/node_modules/@types",
-    "bundles"
-  ],
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true
-  },
-  "files": [
-    "./ng2-youtube-player.ts",
-    "./src/youtube-player.component.ts",
-    "./src/youtube-player.service.ts",
-    "./src/youtube-player.service.spec.ts",
-    "./src/index.ts"
-  ],
-  "angularCompilerOptions": {
-    "genDir": "./src/ngfactory",
-    "debug": false
-  },
-  "compileOnSave": false,
-  "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false }
 }

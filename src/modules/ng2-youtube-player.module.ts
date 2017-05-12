@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { YoutubePlayer } from './youtube-player.component';
-import { YoutubePlayerService } from './youtube-player.service';
+import { YoutubePlayerComponent } from './youtube-player.component';
+import { YoutubePlayerService } from '../services/youtube-player.service';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    YoutubePlayer
+    YoutubePlayerComponent
   ],
   exports: [
-    YoutubePlayer
+    YoutubePlayerComponent
   ],
   providers: [
     YoutubePlayerService
