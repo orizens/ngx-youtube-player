@@ -5,14 +5,14 @@ import { YoutubePlayerComponent } from './youtube-player.component';
 import { YoutubePlayerService } from '../services/youtube-player.service';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
   declarations: [
     YoutubePlayerComponent
   ],
   exports: [
     YoutubePlayerComponent
+  ],
+  imports: [
+    CommonModule
   ],
   providers: [
     YoutubePlayerService

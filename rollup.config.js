@@ -1,8 +1,6 @@
-import { PACKAGE } from './build';
-
 export default {
-    entry: `./dist/modules/${PACKAGE}.es5.js`,
-    dest: `./dist/bundles/${PACKAGE}.umd.js`,
+    entry: './dist/modules/ng2-youtube-player.es5.js',
+    dest: './dist/bundles/ng2-youtube-player.umd.js',
     format: 'umd',
     exports: 'named',
     moduleName: 'ng.ng2YoutubePlayer',

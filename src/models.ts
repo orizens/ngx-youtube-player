@@ -1,15 +1,16 @@
+import '@types/youtube';
 import { EventEmitter } from '@angular/core';
 
-export interface PlayerOutputs {
+export interface IPlayerOutputs {
   ready?: EventEmitter<YT.Player>;
-  change?: EventEmitter<YT.EventArgs>;
+  change?: EventEmitter<YT.PlayerEvent>;
 }
 
-export interface PlayerSize {
+export interface IPlayerSize {
   height?: number;
   width?: number;
 }
 
-export interface PlayerApiScriptOptions {
+export interface IPlayerApiScriptOptions {
   protocol?: string;
 }
