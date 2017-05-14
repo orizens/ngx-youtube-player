@@ -51,3 +51,5 @@ typings
 src/ngFactory
 *.metadata.json
 dist
+
+examples/webpack/node_modules

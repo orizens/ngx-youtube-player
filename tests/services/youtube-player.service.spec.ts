@@ -3,7 +3,7 @@ import {
   inject
 } from '@angular/core/testing';
 
-import { YoutubePlayerService } from './youtube-player.service';
+import { YoutubePlayerService } from '../../src/services/youtube-player.service';
 import { ReplaySubject } from 'rxjs/ReplaySubject'
 
 const zone = jasmine.createSpyObj('zone', ['run']);
