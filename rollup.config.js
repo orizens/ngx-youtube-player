@@ -1,9 +1,9 @@
 export default {
-    entry: './dist/modules/ng2-youtube-player.es5.js',
-    dest: './dist/bundles/ng2-youtube-player.umd.js',
+    entry: './dist/modules/ngx-youtube-player.es5.js',
+    dest: './dist/bundles/ngx-youtube-player.umd.js',
     format: 'umd',
     exports: 'named',
-    moduleName: 'ng.ng2YoutubePlayer',
+    moduleName: 'ng.ngxYoutubePlayer',
     external: [
         '@angular/core',
         '@angular/common',

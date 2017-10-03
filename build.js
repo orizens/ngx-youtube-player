@@ -2,7 +2,7 @@
 
 require('shelljs/global');
 const chalk = require('chalk');
-const PACKAGE = `ng2-youtube-player`;
+const PACKAGE = `ngx-youtube-player`;
 module.exports.PACKAGE = PACKAGE;
 const NPM_DIR = `dist`;
 const MODULES_DIR = `${NPM_DIR}/modules`;
@@ -29,7 +29,7 @@ echo(chalk.green(`AoT compilation completed`));
 /* Creates bundles: ESM/ES5 and UMD bundles */
 echo(`Start bundling`);
 echo(`Rollup package`);
-exec(`rollup -i ${NPM_DIR}/index.js -o ${MODULES_DIR}/${PACKAGE}.js --sourcemap`, {silent: true});
+exec(`rollup -i ${NPM_DIR}/${PACKAGE}.js -o ${MODULES_DIR}/${PACKAGE}.js --sourcemap`, {silent: true});
 exec(`node scripts/map-sources -f ${MODULES_DIR}/${PACKAGE}.js`);
 
 echo(`Downleveling ES2015 to ESM/ES5`);

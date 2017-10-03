@@ -4,7 +4,7 @@ import {
 } from '@angular/core/testing';
 
 import { YoutubePlayerService } from '../../src/services/youtube-player.service';
-import { ReplaySubject } from 'rxjs/ReplaySubject'
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 const zone = jasmine.createSpyObj('zone', ['run']);
 
@@ -23,4 +23,4 @@ describe('YoutubePlayerService', () => {
     const expected = jasmine.any(ReplaySubject);
     expect(actual).toEqual(expected);
   });
-})
+});

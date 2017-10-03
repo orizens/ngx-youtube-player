@@ -3,10 +3,10 @@ import {
   inject
 } from '@angular/core/testing';
 import { YoutubePlayerComponent } from '../../src/modules/youtube-player.component';
-import { YoutubePlayerModule } from '../../src/modules/ng2-youtube-player.module';
+import { YoutubePlayerModule } from '../../src/modules/ngx-youtube-player.module';
 
-describe('Typeahead Component', () => {
+describe('YoutubePlayer Component', () => {
   it('should work...TODO', () => {
     expect(true).toBeTruthy();
-  })
+  });
 });

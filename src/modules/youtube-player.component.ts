@@ -1,6 +1,14 @@
 import {
-  Component, EventEmitter, Input, Output, ChangeDetectionStrategy,
-  AfterContentInit, ElementRef, ViewChild
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  Renderer2,
+  SimpleChanges,
 } from '@angular/core';
 import { YoutubePlayerService } from '../services/youtube-player.service';
 
@@ -8,7 +16,7 @@ import { YoutubePlayerService } from '../services/youtube-player.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'youtube-player',
   template: `
-    <div id="yt-player-ng2-component" #ytPlayerContainer></div>
+    <div id="yt-player-ngx-component"></div>
   `,
 })
 export class YoutubePlayerComponent implements AfterContentInit {
@@ -28,18 +36,17 @@ export class YoutubePlayerComponent implements AfterContentInit {
   // state change: send the YT event with its state
   @Output() change = new EventEmitter<YT.PlayerEvent>();
 
-  /*@internal*/
-  @ViewChild('ytPlayerContainer') public ytPlayerContainer: ElementRef;
-
   constructor(
     public playerService: YoutubePlayerService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private renderer: Renderer2
   ) {}
 
   ngAfterContentInit () {
     const htmlId = this.playerService.generateUniqueId();
     const playerSize = { height: this.height, width: this.width };
-    this.ytPlayerContainer.nativeElement.setAttribute('id', htmlId);
+    const container = this.renderer.selectRootElement('#yt-player-ngx-component');
+    this.renderer.setAttribute(container, 'id', htmlId);
     this.playerService.loadPlayerApi({
       protocol: this.protocol
     });

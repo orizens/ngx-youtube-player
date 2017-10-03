@@ -1,10 +1,10 @@
 {
-  "name": "ng2-youtube-player",
-  "version": "0.0.3",
+  "name": "ngx-youtube-player",
+  "version": "0.0.4",
   "description": "A Powerful Youtube Player Component for Angular",
-  "main": "./bundles/ng2-youtube-player.umd.js",
-  "module": "./modules/ng2-youtube-player.es5.js",
-  "es2015": "./modules/ng2-youtube-player.js",
+  "main": "./bundles/ngx-youtube-player.umd.js",
+  "module": "./modules/ngx-youtube-player.es5.js",
+  "es2015": "./modules/ngx-youtube-player.js",
   "scripts": {
     "build": "node build.js",
     "test": "karma start",
@@ -15,7 +15,7 @@
     "compodoc-serve": "compodoc -s",
     "transpile": "ngc -p ./tsconfig.json"
   },
-  "typings": "./index.d.ts",
+  "typings": "./ngx-youtube-player.d.ts",
   "author": "Oren Farhi (orizens.com)",
   "repository": {
     "type": "git",

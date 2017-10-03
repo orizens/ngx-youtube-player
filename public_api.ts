@@ -9,5 +9,4 @@
 /**
  * Entry point for all public APIs of the package.
  */
-export { YoutubePlayerModule } from './src/modules/ng2-youtube-player.module';
-
+export { YoutubePlayerModule } from './src/ngx-youtube-player';
