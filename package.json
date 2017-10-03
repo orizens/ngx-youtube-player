@@ -1,6 +1,6 @@
 {
   "name": "ngx-youtube-player",
-  "version": "0.0.4",
+  "version": "0.0.41",
   "description": "A Powerful Youtube Player Component for Angular",
   "main": "./bundles/ngx-youtube-player.umd.js",
   "module": "./modules/ngx-youtube-player.es5.js",
