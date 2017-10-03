@@ -1,5 +1,7 @@
 ## v 0.0.4 (2017/10/03)
 * RENAMED npm package to "ngx-youtube-player"
+* updated to be usign Renderer2 for DOM Access to support NodeJS
+* fixes #8
 
 ## v 0.0.3 (2017/05/15)
 * updated to work with ng4
