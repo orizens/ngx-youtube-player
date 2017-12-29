@@ -1,3 +1,6 @@
+## v 0.0.51 (2017/12/29)
+* [FIX] - fixes #27 - youtube player iframe api loaded with each instance 
+
 ## v 0.0.4 (2017/10/03)
 * RENAMED npm package to "ngx-youtube-player"
 * updated to be usign Renderer2 for DOM Access to support NodeJS

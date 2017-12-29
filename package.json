@@ -1,6 +1,6 @@
 {
   "name": "ngx-youtube-player",
-  "version": "0.0.41",
+  "version": "0.0.51",
   "description": "A Powerful Youtube Player Component for Angular",
   "main": "./bundles/ngx-youtube-player.umd.js",
   "module": "./modules/ngx-youtube-player.es5.js",
@@ -10,10 +10,9 @@
     "test": "karma start",
     "pack-lib": "npm pack ./dist",
     "publish-lib": "npm publish ./dist",
-    "publish:beta": "npm publish --tag beta ./dist",
+    "publish-lib:next": "npm publish --tag next ./dist",
     "compodoc": "compodoc -p tsconfig.json",
-    "compodoc-serve": "compodoc -s",
-    "transpile": "ngc -p ./tsconfig.json"
+    "compodoc-serve": "compodoc -s"
   },
   "typings": "./ngx-youtube-player.d.ts",
   "author": "Oren Farhi (orizens.com)",
