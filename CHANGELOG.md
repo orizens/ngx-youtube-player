@@ -1,3 +1,8 @@
+## v 0.1.0 (2018/01/08)
+* [UPGRADE] - official support for Angular 5
+* [UPDATE] - updated repo to ngx-youtube-player
+* [REFACTOR] - added more unit tests and increased coverage 
+
 ## v 0.0.51 (2017/12/29)
 * [FIX] - fixes #27 - youtube player iframe api loaded with each instance 
 

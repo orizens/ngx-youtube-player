@@ -1,29 +1,39 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "declaration": true,
-        "experimentalDecorators": true,
-        "module": "es2015",
-        "moduleResolution": "node",
-        "outDir": "dist",
-        "rootDir": ".",
-        "sourceMap": true,
-        "inlineSources": true,
-        "target": "es2015",
-        "skipLibCheck": true,
-        "lib": [
-            "es2015",
-            "dom"
-        ]
+  "compilerOptions": {
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@angular/*": [
+        "node_modules/@angular/*"
+      ]
     },
-    "files": [
-        "public_api.ts"
+    "outDir": "dist",
+    "declaration": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "module": "es2015",
+    "target": "es2015",
+    "lib": [
+      "es2015",
+      "dom"
     ],
-    "angularCompilerOptions": {
-        "skipTemplateCodegen": true,
-        "annotateForClosureCompiler": true,
-        "strictMetadataEmit": true,
-        "flatModuleOutFile": "ngx-youtube-player.js",
-        "flatModuleId": "ngx-youtube-player"
-    }
+    "skipLibCheck": true,
+    "types": [],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "inlineSources": true
+  },
+  "files": [
+    "public_api.ts",
+    "node_modules/zone.js/dist/zone.js.d.ts"
+  ],
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "flatModuleOutFile": "ngx-youtube-player.js",
+    "flatModuleId": "ngx-youtube-player"
+  }
 }

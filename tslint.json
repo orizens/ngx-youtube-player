@@ -31,6 +31,7 @@
         "use-output-property-decorator": true,
         "use-host-property-decorator": true,
         "no-attribute-parameter-decorator": true,
+        "no-any": false,
         "no-input-rename": true,
         "no-output-rename": true,
         "no-forward-ref": true,
@@ -41,9 +42,6 @@
             true,
             "Component"
         ],
-        "templates-use-public": true,
-        "no-access-missing-member": true,
-        "invoke-injectable": true,
         "ordered-imports": [
             false
         ],
@@ -53,6 +51,9 @@
         "trailing-comma": [
             false
         ],
-        "member-access": [false, "check-accessor"]
+        "member-access": [
+            false,
+            "check-accessor"
+        ]
     }
 }

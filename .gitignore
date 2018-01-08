@@ -53,3 +53,4 @@ src/ngFactory
 dist
 
 examples/webpack/node_modules
+examples/
