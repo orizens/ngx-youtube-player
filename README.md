@@ -1,13 +1,14 @@
-[![Build Status](https://travis-ci.org/orizens/ng2-youtube-player.svg?branch=master)](https://travis-ci.org/orizens/ng2-youtube-player)
-# IMPORTANT
-package renamed to **ngx-youtube-player**
+[![Build Status](https://travis-ci.org/orizens/ngx-youtube-player.svg?branch=master)](https://travis-ci.org/orizens/ngx-youtube-player)
+# Install
+```npm i ngx-youtube-player```
 
 # Angular Youtube Player Component
-This is an Angular (v4 and above) component based on [youtube player iframe api](https://developers.google.com/youtube/iframe_api_reference).
+This is an Angular (v4, 5) component based on [youtube player iframe api](https://developers.google.com/youtube/iframe_api_reference).
 This component came out as a result of the [open source project Echoes Player](http://github.com/orizens/echoes-player) - an alternative player for watching and listening to media from youtube.
 
 ## Angular Support
-Updated to support Angular - **Final > 4**
+Updated to support Angular - **5**  
+For **Angular 4** version only - please use ```ngx-infinite-scroll@0.0.51```
 
 ## LICENSE
 Angular Youtube Component includes 2 optional licenses:  
@@ -50,7 +51,7 @@ First, import the YoutubePlayerModule to your module:
 ```typescript
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { YoutubePlayerModule } from 'ng2-youtube-player';
+import { YoutubePlayerModule } from 'ngx-youtube-player';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppComponent } from './app';
 
@@ -100,4 +101,4 @@ This will: compile ts files, watch for changes and start the test task. Whenever
 Travis-ci is integrated
 
 # Showcase Examples
-* [Echoes Player Ng2 Version](http://orizens.github.io/echoes-ng2) ([github repo for echoes player](http://github.com/orizens/echoes-ng2))
+* [Echoes Player](http://orizens.github.io/echoes-player) ([github repo for echoes player](http://github.com/orizens/echoes-player))
