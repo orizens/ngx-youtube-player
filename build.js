@@ -1,61 +1,73 @@
 "use strict";
 
-require('shelljs/global');
+const shell = require('shelljs');
 const chalk = require('chalk');
+
 const PACKAGE = `ngx-youtube-player`;
-module.exports.PACKAGE = PACKAGE;
 const NPM_DIR = `dist`;
-const MODULES_DIR = `${NPM_DIR}/modules`;
+const ESM2015_DIR = `${NPM_DIR}/esm2015`;
+const ESM5_DIR = `${NPM_DIR}/esm5`;
 const BUNDLES_DIR = `${NPM_DIR}/bundles`;
+const OUT_DIR_ESM5 = `${NPM_DIR}/package/esm5`;
 
-echo('Start building...');
+shell.echo(`Start building...`);
 
-rm(`-Rf`, `${NPM_DIR}/*`);
-mkdir(`-p`, `./${MODULES_DIR}`);
-mkdir(`-p`, `./${BUNDLES_DIR}`);
+shell.rm(`-Rf`, `${NPM_DIR}/*`);
+shell.mkdir(`-p`, `./${ESM2015_DIR}`);
+shell.mkdir(`-p`, `./${ESM5_DIR}`);
+shell.mkdir(`-p`, `./${BUNDLES_DIR}`);
 
 /* TSLint with Codelyzer */
 // https://github.com/palantir/tslint/blob/master/src/configs/recommended.ts
 // https://github.com/mgechev/codelyzer
-echo(`Start TSLint`);
-exec(`tslint --project ./tsconfig.json --type-check ./src/**/*.ts`);
-echo(chalk.green(`TSLint completed`));
+shell.echo(`Start TSLint`);
+shell.exec(`tslint -c tslint.json -t stylish src/**/*.ts`);
+shell.echo(chalk.green(`TSLint completed`));
 
-/* Aot compilation: ES2015 sources */
-echo(`Start AoT compilation`);
-exec(`ngc -p tsconfig-build.json`);
-echo(chalk.green(`AoT compilation completed`));
+/* AoT compilation */
+shell.echo(`Start AoT compilation`);
+if (shell.exec(`ngc -p tsconfig-build.json`).code !== 0) {
+  shell.echo(chalk.red(`Error: AoT compilation failed`));
+  shell.exit(1);
+}
+shell.echo(chalk.green(`AoT compilation completed`));
 
-/* Creates bundles: ESM/ES5 and UMD bundles */
-echo(`Start bundling`);
-echo(`Rollup package`);
-exec(`rollup -i ${NPM_DIR}/${PACKAGE}.js -o ${MODULES_DIR}/${PACKAGE}.js --sourcemap`, {silent: true});
-exec(`node scripts/map-sources -f ${MODULES_DIR}/${PACKAGE}.js`);
+/* BUNDLING PACKAGE */
+shell.echo(`Start bundling`);
+shell.echo(`Rollup package`);
+if (shell.exec(`rollup -c rollup.es.config.js -i ${NPM_DIR}/${PACKAGE}.js -o ${ESM2015_DIR}/${PACKAGE}.js`).code !== 0) {
+  shell.echo(chalk.red(`Error: Rollup package failed`));
+  shell.exit(1);
+}
 
-echo(`Downleveling ES2015 to ESM/ES5`);
-cp(`${MODULES_DIR}/${PACKAGE}.js`, `${MODULES_DIR}/${PACKAGE}.es5.ts`);
-exec(`tsc ${MODULES_DIR}/${PACKAGE}.es5.ts --target es5 --module es2015 --noLib --sourceMap`, {silent: true});
-exec(`node scripts/map-sources -f ${MODULES_DIR}/${PACKAGE}.es5.js`);
-rm(`-f`, `${MODULES_DIR}/${PACKAGE}.es5.ts`);
+shell.echo(`Produce ESM5 version`);
+shell.exec(`ngc -p tsconfig-build.json --target es5 -d false --outDir ${OUT_DIR_ESM5} --importHelpers true --sourceMap`);
+if (shell.exec(`rollup -c rollup.es.config.js -i ${OUT_DIR_ESM5}/${PACKAGE}.js -o ${ESM5_DIR}/${PACKAGE}.js`).code !== 0) {
+  shell.echo(chalk.red(`Error: ESM5 version failed`));
+  shell.exit(1);
+}
 
-echo(`Run Rollup conversion on package`);
-exec(`rollup -c rollup.config.js --sourcemap`, {silent: true});
-exec(`node scripts/map-sources -f ${BUNDLES_DIR}/${PACKAGE}.umd.js`);
+shell.echo(`Run Rollup conversion on package`);
+if (shell.exec(`rollup -c rollup.config.js -i ${ESM5_DIR}/${PACKAGE}.js -o ${BUNDLES_DIR}/${PACKAGE}.umd.js`).code !== 0) {
+  shell.echo(chalk.red(`Error: Rollup conversion failed`));
+  shell.exit(1);
+}
 
-echo(`Minifying`);
-cd(`${BUNDLES_DIR}`);
-exec(`uglifyjs -c --screw-ie8 --comments -o ${PACKAGE}.umd.min.js --source-map ${PACKAGE}.umd.min.js.map --source-map-include-sources ${PACKAGE}.umd.js`, {silent: true});
-exec(`node ../../scripts/map-sources -f ${PACKAGE}.umd.min.js`);
-cd(`..`);
-cd(`..`);
+shell.echo(`Minifying`);
+shell.cd(`${BUNDLES_DIR}`);
+shell.exec(`uglifyjs ${PACKAGE}.umd.js -c --comments -o ${PACKAGE}.umd.min.js --source-map "filename='${PACKAGE}.umd.min.js.map', includeSources"`);
+shell.cd(`..`);
+shell.cd(`..`);
 
-echo(chalk.green(`Bundling completed`));
+shell.echo(chalk.green(`Bundling completed`));
 
-rm(`-Rf`, `${NPM_DIR}/*.js`);
-rm(`-Rf`, `${NPM_DIR}/*.js.map`);
-rm(`-Rf`, `${NPM_DIR}/src/**/*.js`);
-rm(`-Rf`, `${NPM_DIR}/src/**/*.js.map`);
+shell.rm(`-Rf`, `${NPM_DIR}/package`);
+shell.rm(`-Rf`, `${NPM_DIR}/node_modules`);
+shell.rm(`-Rf`, `${NPM_DIR}/*.js`);
+shell.rm(`-Rf`, `${NPM_DIR}/*.js.map`);
+shell.rm(`-Rf`, `${NPM_DIR}/src/**/*.js`);
+shell.rm(`-Rf`, `${NPM_DIR}/src/**/*.js.map`);
 
-cp(`-Rf`, [`package.json`, `LICENSE`, `README.md`], `${NPM_DIR}`);
+shell.cp(`-Rf`, [`package.json`, `LICENSE`, `README.md`], `${NPM_DIR}`);
 
-echo(chalk.green(`End building`));
+shell.echo(chalk.green(`End building`));

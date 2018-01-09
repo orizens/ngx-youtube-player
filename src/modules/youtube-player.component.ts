@@ -40,9 +40,9 @@ export class YoutubePlayerComponent implements AfterContentInit {
     public playerService: YoutubePlayerService,
     private elementRef: ElementRef,
     private renderer: Renderer2
-  ) {}
+  ) { }
 
-  ngAfterContentInit () {
+  ngAfterContentInit() {
     const htmlId = this.playerService.generateUniqueId();
     const playerSize = { height: this.height, width: this.width };
     const container = this.renderer.selectRootElement('#yt-player-ngx-component');
