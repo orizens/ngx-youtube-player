@@ -8,21 +8,24 @@ import {
   OnChanges,
   Output,
   Renderer2,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
-import { YoutubePlayerService } from '../services/youtube-player.service';
+import {
+  YoutubePlayerService,
+  defaultSizes
+} from '../services/youtube-player.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'youtube-player',
   template: `
     <div id="yt-player-ngx-component"></div>
-  `,
+  `
 })
 export class YoutubePlayerComponent implements AfterContentInit {
   @Input() videoId = '';
-  @Input() height: number;
-  @Input() width: number;
+  @Input() height = defaultSizes.height;
+  @Input() width = defaultSizes.width;
   /**
    * @description sets the protocol by the navigator object
    * if there is no window, it sets a default http protocol
@@ -40,20 +43,28 @@ export class YoutubePlayerComponent implements AfterContentInit {
     public playerService: YoutubePlayerService,
     private elementRef: ElementRef,
     private renderer: Renderer2
-  ) { }
+  ) {}
 
   ngAfterContentInit() {
     const htmlId = this.playerService.generateUniqueId();
     const playerSize = { height: this.height, width: this.width };
-    const container = this.renderer.selectRootElement('#yt-player-ngx-component');
+    const container = this.renderer.selectRootElement(
+      '#yt-player-ngx-component'
+    );
     this.renderer.setAttribute(container, 'id', htmlId);
     this.playerService.loadPlayerApi({
       protocol: this.protocol
     });
-    this.playerService.setupPlayer(htmlId, {
-      change: this.change,
-      ready: this.ready,
-    }, playerSize, this.videoId, this.playerVars);
+    this.playerService.setupPlayer(
+      htmlId,
+      {
+        change: this.change,
+        ready: this.ready
+      },
+      playerSize,
+      this.videoId,
+      this.playerVars
+    );
   }
 
   getProtocol() {

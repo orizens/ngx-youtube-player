@@ -1,18 +1,23 @@
-import {
-  async,
-  inject
-} from '@angular/core/testing';
+import { async, inject } from '@angular/core/testing';
 
-import { YoutubePlayerService, defaultSizes, win, Player, YT } from '../../src/services/youtube-player.service';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import {
+  YoutubePlayerService,
+  defaultSizes,
+  win,
+  YouTubePlayerRef,
+  YouTubeRef
+} from '../../src/services/youtube-player.service';
+import { ReplaySubject } from 'rxjs';
 
 const zone = jasmine.createSpyObj('zone', ['run']);
 
 describe('YoutubePlayerService', () => {
   global['YT'] = {
-    Player: jasmine.createSpy('YTPlayer').and.callFake((id: string, params: any) => params),
+    Player: jasmine
+      .createSpy('YTPlayer')
+      .and.callFake((id: string, params: any) => params),
     PlayerState: 1
-  }
+  };
 
   it('should create an instance of YoutubePlayerService', () => {
     const service = new YoutubePlayerService(zone);
@@ -55,15 +60,21 @@ describe('YoutubePlayerService', () => {
           height: 1000,
           width: 2000
         },
-        videoId: '',
+        videoId: ''
       };
       service = new YoutubePlayerService(zone);
-      actual = service.createPlayer(params.id, params.outputs, params.sizes, params.videoId, params.playerVars);
+      actual = service.createPlayer(
+        params.id,
+        params.outputs,
+        params.sizes,
+        params.videoId,
+        params.playerVars
+      );
     });
 
     it('should create a player using YT Api', () => {
       const expected = actual;
-      expect(Player()).toHaveBeenCalledWith(params.id, expected);
+      expect(YouTubePlayerRef()).toHaveBeenCalledWith(params.id, expected);
     });
 
     it('should create a player with given sizes', () => {
@@ -90,7 +101,7 @@ describe('YoutubePlayerService', () => {
         'getPlayerState',
         'setSize'
       ]);
-    })
+    });
     it('should play the video', () => {
       const service = new YoutubePlayerService(zone);
       service.play(player);
@@ -103,20 +114,20 @@ describe('YoutubePlayerService', () => {
     });
     it('should tell a video is playing', () => {
       const service = new YoutubePlayerService(zone);
-      const media = { id: 'testing' }
+      const media = { id: 'testing' };
       service.playVideo(media, player);
       expect(player.loadVideoById).toHaveBeenCalledTimes(1);
       expect(player.playVideo).toHaveBeenCalledTimes(1);
     });
     it('should tell a video is playing using the player state', () => {
       const service = new YoutubePlayerService(zone);
-      const media = { id: 'testing' }
+      const media = { id: 'testing' };
       service.isPlaying(player);
       expect(player.getPlayerState).toHaveBeenCalledTimes(1);
     });
     it('should tell a video is NOT playing', () => {
       const service = new YoutubePlayerService(zone);
-      const media = { id: 'testing' }
+      const media = { id: 'testing' };
       const actual = service.isPlaying({} as YT.Player);
       const expected = false;
       expect(player.getPlayerState).not.toHaveBeenCalled();
@@ -132,7 +143,10 @@ describe('YoutubePlayerService', () => {
       global['innerHeight'] = 1000;
       global['innerWidth'] = 2000;
       const actual = service.toggleFullScreen(player, false);
-      expect(player.setSize).toHaveBeenCalledWith(global['innerWidth'], global['innerHeight']);
+      expect(player.setSize).toHaveBeenCalledWith(
+        global['innerWidth'],
+        global['innerHeight']
+      );
     });
   });
 });
