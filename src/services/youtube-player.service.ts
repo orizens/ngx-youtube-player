@@ -41,7 +41,9 @@ export class YoutubePlayerService {
       const playerApiScript = doc.createElement('script');
       playerApiScript.type = 'text/javascript';
       playerApiScript.src = `${options.protocol}://www.youtube.com/iframe_api`;
-      doc.body.appendChild(playerApiScript);
+      if (!document.querySelector("script[src='" + playerApiScript.src + "']")) {
+        doc.body.appendChild(playerApiScript);
+      }
     }
   }
 
