@@ -40,8 +40,9 @@ export class YoutubePlayerService {
       this.ytApiLoaded = true;
       const playerApiScript = doc.createElement('script');
       playerApiScript.type = 'text/javascript';
-      playerApiScript.src = `${options.protocol}://www.youtube.com/iframe_api`;
-      if (!document.querySelector("script[src='" + playerApiScript.src + "']")) {
+      const src = `${options.protocol}://www.youtube.com/iframe_api`;
+      playerApiScript.src = src;
+      if (!document.querySelector(`script[src=${src}]`)) {
         doc.body.appendChild(playerApiScript);
       }
     }
