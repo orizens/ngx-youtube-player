@@ -129,6 +129,41 @@
           }
         }
       }
+    },
+    "ngx-youtube-player": {
+      "root": "projects/ngx-youtube-player",
+      "sourceRoot": "projects/ngx-youtube-player/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-youtube-player/tsconfig.lib.json",
+            "project": "projects/ngx-youtube-player/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-youtube-player/src/test.ts",
+            "tsConfig": "projects/ngx-youtube-player/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-youtube-player/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-youtube-player/tsconfig.lib.json",
+              "projects/ngx-youtube-player/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-youtube-player-project"

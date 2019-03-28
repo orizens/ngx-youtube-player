@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-youtube-player": [
+        "dist/ngx-youtube-player"
+      ],
+      "ngx-youtube-player/*": [
+        "dist/ngx-youtube-player/*"
+      ]
+    }
   }
 }
