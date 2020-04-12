@@ -1,3 +1,7 @@
+## v 7.1.2 (2020/04/12)
+
+- [CHORE] - added scarf for stats
+
 ## v 7.1.1 (2019/03/27)
 
 - [NEW] - now using "NgxYoutubePlayerModule" as the module name

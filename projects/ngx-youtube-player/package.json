@@ -1,6 +1,6 @@
 {
   "name": "ngx-youtube-player",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "author": "Oren Farhi (orizens.com)",
   "peerDependencies": {
     "@angular/common": "^7.1.0",
