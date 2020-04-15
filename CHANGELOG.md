@@ -1,3 +1,7 @@
+## v 7.1.4 (2020/04/15)
+
+- [CHORE] - adding scarf to published package
+
 ## v 7.1.3 (2020/04/15)
 
 - [CHORE] - updating package name to display info on npm
