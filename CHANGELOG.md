@@ -1,3 +1,7 @@
+## v 7.1.3 (2020/04/15)
+
+- [CHORE] - updating package name to display info on npm
+
 ## v 7.1.2 (2020/04/12)
 
 - [CHORE] - added scarf for stats
