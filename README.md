@@ -37,15 +37,12 @@ Angular Youtube Component includes 2 optional licenses:
 2.  **Commercial (Enterprize)** - **you must purchase a license**, includes the following features:
 
 - standard play features
-- playlist support (without ads)
-- auto play next track in playlist
-- upgrades for 1 year
 - online support for 1 year
 - License types:
   - app developer (\$200) - a license for each developer working with this component for one product only
   - platform developer (\$550) - a license for each developer developer working with component for all products in one company
 
-To purchase a license, please contact at http://orizens.com/contact
+To purchase a license, please contact at https://orizens.com/contact
 
 ## Installation
 
@@ -75,16 +72,16 @@ Currently supported attributes:
 First, import the YoutubePlayerModule to your module:
 
 ```typescript
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { YoutubePlayerModule } from 'ngx-youtube-player';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppComponent } from './app';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { YoutubePlayerModule } from "ngx-youtube-player";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { AppComponent } from "./app";
 
 @NgModule({
   imports: [BrowserModule, YoutubePlayerModule.forRoot()],
   declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
 
@@ -94,28 +91,28 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 Next, use the **youtube-player** component. A Unique Id will be created for this player's instance:
 
 ```typescript
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app',
+  selector: "app",
   template: `
     <youtube-player
       [videoId]="id"
       (ready)="savePlayer($event)"
       (change)="onStateChange($event)"
     ></youtube-player>
-  `
+  `,
 })
 export class AppComponent {
   player: YT.Player;
-  private id: string = 'qDuKsiwS5xw';
+  private id: string = "qDuKsiwS5xw";
 
   savePlayer(player) {
     this.player = player;
-    console.log('player instance', player);
+    console.log("player instance", player);
   }
   onStateChange(event) {
-    console.log('player state', event.data);
+    console.log("player state", event.data);
   }
 }
 ```

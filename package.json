@@ -1,6 +1,6 @@
 {
   "name": "ngx-youtube-player",
-  "version": "7.1.4",
+  "version": "7.1.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

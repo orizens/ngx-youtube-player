@@ -1,3 +1,7 @@
+## v 7.1.5 (2020/04/17)
+
+- [CHORE] - adding scarf as a dependency
+
 ## v 7.1.4 (2020/04/15)
 
 - [CHORE] - adding scarf to published package
