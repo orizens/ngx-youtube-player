@@ -8,7 +8,7 @@ dist: trusty
 #       - google-chrome-stable
 language: node_js
 node_js:
-  - stable
+  - "12.15.0"
 install:
   - npm i
   - npm run build:lib
