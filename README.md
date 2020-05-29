@@ -74,12 +74,12 @@ First, import the YoutubePlayerModule to your module:
 ```typescript
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { YoutubePlayerModule } from "ngx-youtube-player";
+import { NgxYoutubePlayerModule  } from "ngx-youtube-player";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { AppComponent } from "./app";
 
 @NgModule({
-  imports: [BrowserModule, YoutubePlayerModule.forRoot()],
+  imports: [BrowserModule, NgxYoutubePlayerModule.forRoot()],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
 })
