@@ -23,7 +23,8 @@ export const defaultSizes = {
   providedIn: 'root'
 })
 export class YoutubePlayerService {
-  api: ReplaySubject<YT.Player>;
+  // api: ReplaySubject<YT.Player>;
+  api: ReplaySubject<any>;
 
   private ytApiLoaded = false;
 

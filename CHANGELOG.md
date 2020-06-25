@@ -1,3 +1,11 @@
+## v 9.0.0 (2020/04/17)
+
+- [UPGRADE] - ng-9
+
+## v 8.0.0 (SKIPPED)
+
+- NO VERSION
+
 ## v 7.1.5 (2020/04/17)
 
 - [CHORE] - adding scarf as a dependency
