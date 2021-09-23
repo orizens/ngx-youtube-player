@@ -36,8 +36,6 @@ Angular Youtube Component includes 2 optional licenses:
 1.  **Free** - for open source projects - includes standard play features, released under **MIT** license.
 2.  **Commercial (Enterprize)** - **you must purchase a license**, includes the following features:
 
-- standard play features
-- online support for 1 year
 - License types:
   - app developer (\$200) - a license for each developer working with this component for one product only
   - platform developer (\$550) - a license for each developer developer working with component for all products in one company
