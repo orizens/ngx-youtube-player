@@ -25,7 +25,7 @@ export const defaultSizes = {
 export class YoutubePlayerService {
   api: ReplaySubject<YT.Player>;
 
-  private ytApiLoaded = false;
+  static ytApiLoaded = false;
 
   constructor(private zone: NgZone) {
     this.api = new ReplaySubject(1);
@@ -34,8 +34,8 @@ export class YoutubePlayerService {
 
   loadPlayerApi(options: IPlayerApiScriptOptions) {
     const doc = win().document;
-    if (!this.ytApiLoaded) {
-      this.ytApiLoaded = true;
+    if (!YoutubePlayerService["ytApiLoaded"]) {
+      YoutubePlayerService.ytApiLoaded = true;
       const playerApiScript = doc.createElement("script");
       playerApiScript.type = "text/javascript";
       playerApiScript.src = `${options.protocol}://www.youtube.com/iframe_api`;
@@ -124,7 +124,7 @@ export class YoutubePlayerService {
   }
 
   // adpoted from uid
-  generateUniqueId() {
+  generateUniqueId(): string {
     const len = 7;
     return Math.random().toString(35).substr(2, len);
   }
@@ -132,9 +132,17 @@ export class YoutubePlayerService {
   private createApi() {
     const onYouTubeIframeAPIReady = () => {
       if (win()) {
-        this.api.next(YouTubeRef());
+        win()["onYouTubeIframeAPIReadyCalled"] = true;
+        this.api.next();
       }
     };
     win()["onYouTubeIframeAPIReady"] = onYouTubeIframeAPIReady;
+    /**
+     * If onYouTubeIframeAPIReady is called in other place, then just trigger next
+     * This is to prevent player not initializing issue when another player got initialized in other place
+     */
+    if (win()["onYouTubeIframeAPIReadyCalled"]) {
+      this.api.next();
+    }
   }
 }

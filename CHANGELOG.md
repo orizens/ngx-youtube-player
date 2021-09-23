@@ -1,3 +1,7 @@
+## v 12.0.1 (2020/09/23)
+
+- [FIX] - apply pr #80 fix - allow multiple instances
+
 ## v 12.0.0 (2020/09/23)
 
 - [CHORE] - upgrade to latest v12.0.
