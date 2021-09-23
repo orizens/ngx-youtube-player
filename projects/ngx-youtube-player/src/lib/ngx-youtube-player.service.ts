@@ -23,19 +23,17 @@ export const defaultSizes = {
   providedIn: 'root'
 })
 export class YoutubePlayerService {
-  api: ReplaySubject<YT.Player>;
-
-  private ytApiLoaded = false;
+  api: ReplaySubject<void>;
 
   constructor(private zone: NgZone) {
     this.api = new ReplaySubject(1);
     this.createApi();
   }
 
-  loadPlayerApi(options: IPlayerApiScriptOptions) {
+  loadPlayerApi(options: IPlayerApiScriptOptions): void {
     const doc = win().document;
-    if (!this.ytApiLoaded) {
-      this.ytApiLoaded = true;
+    if (!win()['ytApiLoaded']) {
+      win()['ytApiLoaded'] = true;
       const playerApiScript = doc.createElement('script');
       playerApiScript.type = 'text/javascript';
       playerApiScript.src = `${options.protocol}://www.youtube.com/iframe_api`;
@@ -49,7 +47,7 @@ export class YoutubePlayerService {
     sizes: IPlayerSize,
     videoId = '',
     playerVars: YT.PlayerVars
-  ) {
+  ): void {
     const createPlayer = () => {
       if (YouTubePlayerRef) {
         this.createPlayer(elementId, outputs, sizes, videoId, playerVars);
@@ -58,29 +56,29 @@ export class YoutubePlayerService {
     this.api.subscribe(createPlayer);
   }
 
-  play(player: YT.Player) {
+  play(player: YT.Player): void {
     player.playVideo();
   }
 
-  pause(player: YT.Player) {
+  pause(player: YT.Player): void {
     player.pauseVideo();
   }
 
-  playVideo(media: any, player: YT.Player) {
+  playVideo(media: any, player: YT.Player): void {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const id = media.id.videoId ? media.id.videoId : media.id;
     player.loadVideoById(id);
     this.play(player);
   }
 
-  isPlaying(player: YT.Player) {
+  isPlaying(player: YT.Player): boolean {
     // because YT is not loaded yet 1 is used - YT.PlayerState.PLAYING
     const isPlayerReady: any = player && player.getPlayerState;
     const playerState = isPlayerReady ? player.getPlayerState() : {};
-    const isPlayerPlaying = isPlayerReady
+    return isPlayerReady
       ? playerState !== YouTubeRef().PlayerState.ENDED &&
-        playerState !== YouTubeRef().PlayerState.PAUSED
+      playerState !== YouTubeRef().PlayerState.PAUSED
       : false;
-    return isPlayerPlaying;
   }
 
   createPlayer(
@@ -89,7 +87,7 @@ export class YoutubePlayerService {
     sizes: IPlayerSize,
     videoId = '',
     playerVars: YT.PlayerVars = {}
-  ) {
+  ): YT.Player {
     const playerSize = {
       height: sizes.height || defaultSizes.height,
       width: sizes.width || defaultSizes.width
@@ -113,7 +111,7 @@ export class YoutubePlayerService {
   toggleFullScreen(
     player: YT.Player,
     isFullScreen: boolean | null | undefined
-  ) {
+  ): void {
     let { height, width } = defaultSizes;
 
     if (!isFullScreen) {
@@ -124,19 +122,26 @@ export class YoutubePlayerService {
   }
 
   // adpoted from uid
-  generateUniqueId() {
+  generateUniqueId(): string {
     const len = 7;
     return Math.random()
       .toString(35)
       .substr(2, len);
   }
 
-  private createApi() {
-    const onYouTubeIframeAPIReady = () => {
+  private createApi(): void {
+    win()['onYouTubeIframeAPIReady'] = () => {
       if (win()) {
-        this.api.next(YouTubeRef());
+        win()['onYouTubeIframeAPIReadyCalled'] = true;
+        this.api.next();
       }
     };
-    win()['onYouTubeIframeAPIReady'] = onYouTubeIframeAPIReady;
+    /**
+     * If onYouTubeIframeAPIReady is called in other place, then just trigger next
+     * This is to prevent player not initializing issue when another player got initialized in other place
+     */
+    if (win()['onYouTubeIframeAPIReadyCalled']) {
+      this.api.next();
+    }
   }
 }
