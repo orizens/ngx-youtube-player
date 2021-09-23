@@ -1,3 +1,7 @@
+## v 12.0.0 (2020/09/23)
+
+- [CHORE] - upgrade to latest v12.0.
+
 ## v 11.0.0 (2020/09/23)
 
 - [CHORE] - upgrade to latest v11.0.

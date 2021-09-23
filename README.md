@@ -23,11 +23,7 @@ This component came out as a result of the [open source project Echoes Player](h
 
 **Starting with version 6**, versions follow Angular's version to easily reflect compatibility.
 
-Meaning, for Angular 7, use ngx-youtube-player @ ^7.0.0
-
-For Angular **5** - please use `ngx-youtube-player@0.1.0`
-
-For Angular **4** version only - please use `ngx-infinite-scroll@0.0.51`
+Meaning, for Angular 11, use ngx-youtube-player @ ^11.0.0
 
 ## LICENSE
 
