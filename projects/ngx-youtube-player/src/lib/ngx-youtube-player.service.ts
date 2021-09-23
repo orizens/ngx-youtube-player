@@ -1,26 +1,26 @@
-import { Injectable, NgZone } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
-import { IPlayerApiScriptOptions, IPlayerOutputs, IPlayerSize } from './models';
+import { Injectable, NgZone } from "@angular/core";
+import { ReplaySubject } from "rxjs";
+import { IPlayerApiScriptOptions, IPlayerOutputs, IPlayerSize } from "./models";
 
 export function win() {
   return window;
 }
 
-export function YouTubeRef() {
-  return win()['YT'];
+export function YouTubeRef(): any {
+  return win()["YT"] as any;
 }
 
 export function YouTubePlayerRef() {
-  return YouTubeRef().Player;
+  return YouTubeRef().Player as any;
 }
 
 export const defaultSizes = {
   height: 270,
-  width: 367
+  width: 367,
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class YoutubePlayerService {
   api: ReplaySubject<YT.Player>;
@@ -36,8 +36,8 @@ export class YoutubePlayerService {
     const doc = win().document;
     if (!this.ytApiLoaded) {
       this.ytApiLoaded = true;
-      const playerApiScript = doc.createElement('script');
-      playerApiScript.type = 'text/javascript';
+      const playerApiScript = doc.createElement("script");
+      playerApiScript.type = "text/javascript";
       playerApiScript.src = `${options.protocol}://www.youtube.com/iframe_api`;
       doc.body.appendChild(playerApiScript);
     }
@@ -47,7 +47,7 @@ export class YoutubePlayerService {
     elementId: string,
     outputs: IPlayerOutputs,
     sizes: IPlayerSize,
-    videoId = '',
+    videoId = "",
     playerVars: YT.PlayerVars
   ) {
     const createPlayer = () => {
@@ -87,12 +87,12 @@ export class YoutubePlayerService {
     elementId: string,
     outputs: IPlayerOutputs,
     sizes: IPlayerSize,
-    videoId = '',
+    videoId = "",
     playerVars: YT.PlayerVars = {}
   ) {
     const playerSize = {
       height: sizes.height || defaultSizes.height,
-      width: sizes.width || defaultSizes.width
+      width: sizes.width || defaultSizes.width,
     };
     const ytPlayer = YouTubePlayerRef();
     return new ytPlayer(elementId, {
@@ -103,10 +103,10 @@ export class YoutubePlayerService {
         },
         onStateChange: (ev: YT.PlayerEvent) => {
           this.zone.run(() => outputs.change && outputs.change.next(ev));
-        }
+        },
       },
       playerVars,
-      videoId
+      videoId,
     });
   }
 
@@ -126,9 +126,7 @@ export class YoutubePlayerService {
   // adpoted from uid
   generateUniqueId() {
     const len = 7;
-    return Math.random()
-      .toString(35)
-      .substr(2, len);
+    return Math.random().toString(35).substr(2, len);
   }
 
   private createApi() {
@@ -137,6 +135,6 @@ export class YoutubePlayerService {
         this.api.next(YouTubeRef());
       }
     };
-    win()['onYouTubeIframeAPIReady'] = onYouTubeIframeAPIReady;
+    win()["onYouTubeIframeAPIReady"] = onYouTubeIframeAPIReady;
   }
 }

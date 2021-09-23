@@ -1,3 +1,8 @@
+## v 9.1.0 (2020/09/23)
+
+- [CHORE] - upgrade to latest v9
+- [FIX] - allow mutiple instances fix #80
+
 ## v 7.1.5 (2020/04/17)
 
 - [CHORE] - adding scarf as a dependency
