@@ -23,11 +23,7 @@ This component came out as a result of the [open source project Echoes Player](h
 
 **Starting with version 6**, versions follow Angular's version to easily reflect compatibility.
 
-Meaning, for Angular 7, use ngx-youtube-player @ ^7.0.0
-
-For Angular **5** - please use `ngx-youtube-player@0.1.0`
-
-For Angular **4** version only - please use `ngx-infinite-scroll@0.0.51`
+Meaning, for Angular 11, use ngx-youtube-player @ ^11.0.0
 
 ## LICENSE
 
@@ -36,8 +32,6 @@ Angular Youtube Component includes 2 optional licenses:
 1.  **Free** - for open source projects - includes standard play features, released under **MIT** license.
 2.  **Commercial (Enterprize)** - **you must purchase a license**, includes the following features:
 
-- standard play features
-- online support for 1 year
 - License types:
   - app developer (\$200) - a license for each developer working with this component for one product only
   - platform developer (\$550) - a license for each developer developer working with component for all products in one company

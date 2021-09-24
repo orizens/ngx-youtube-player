@@ -9,7 +9,7 @@ import { YoutubePlayerService } from './ngx-youtube-player.service';
   exports: [YoutubePlayerComponent]
 })
 export class NgxYoutubePlayerModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<NgxYoutubePlayerModule> {
     return {
       ngModule: NgxYoutubePlayerModule,
       providers: [YoutubePlayerService]

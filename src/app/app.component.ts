@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  id = 'qDuKsiwS5xw';
+  id = "V462IsOV3js";
   playerVars = {
-    cc_lang_pref: 'en'
+    cc_lang_pref: "en",
   };
   private player;
-  private ytEvent;
+  public ytEvent;
 
   constructor() {}
   onStateChange(event) {

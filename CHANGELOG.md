@@ -1,3 +1,24 @@
+## v 12.0.1 (2020/09/23)
+
+- [FIX] - apply pr #80 fix - allow multiple instances
+
+## v 12.0.0 (2020/09/23)
+
+- [CHORE] - upgrade to latest v12.0.
+
+## v 11.0.0 (2020/09/23)
+
+- [CHORE] - upgrade to latest v11.0.
+
+## v 10.2.0 (2020/09/23)
+
+- [CHORE] - upgrade to latest v10.2
+
+## v 9.1.0 (2020/09/23)
+
+- [CHORE] - upgrade to latest v9
+- [FIX] - allow mutiple instances fix #80
+
 ## v 7.1.5 (2020/04/17)
 
 - [CHORE] - adding scarf as a dependency

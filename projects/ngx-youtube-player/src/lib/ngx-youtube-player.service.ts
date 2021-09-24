@@ -6,24 +6,24 @@ export function win() {
   return window;
 }
 
-export function YouTubeRef() {
-  return win()['YT'];
+export function YouTubeRef(): any {
+  return win()['YT'] as any;
 }
 
 export function YouTubePlayerRef() {
-  return YouTubeRef().Player;
+  return YouTubeRef().Player as any;
 }
 
 export const defaultSizes = {
   height: 270,
-  width: 367
+  width: 367,
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class YoutubePlayerService {
-  api: ReplaySubject<void>;
+  api: ReplaySubject<YT.Player>;
 
   constructor(private zone: NgZone) {
     this.api = new ReplaySubject(1);
@@ -90,7 +90,7 @@ export class YoutubePlayerService {
   ): YT.Player {
     const playerSize = {
       height: sizes.height || defaultSizes.height,
-      width: sizes.width || defaultSizes.width
+      width: sizes.width || defaultSizes.width,
     };
     const ytPlayer = YouTubePlayerRef();
     return new ytPlayer(elementId, {
@@ -101,10 +101,10 @@ export class YoutubePlayerService {
         },
         onStateChange: (ev: YT.PlayerEvent) => {
           this.zone.run(() => outputs.change && outputs.change.next(ev));
-        }
+        },
       },
       playerVars,
-      videoId
+      videoId,
     });
   }
 
@@ -124,9 +124,7 @@ export class YoutubePlayerService {
   // adpoted from uid
   generateUniqueId(): string {
     const len = 7;
-    return Math.random()
-      .toString(35)
-      .substr(2, len);
+    return Math.random().toString(35).substr(2, len);
   }
 
   private createApi(): void {
