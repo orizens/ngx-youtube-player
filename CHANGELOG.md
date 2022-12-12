@@ -1,3 +1,6 @@
+## v 12.0.2 (2022/12/12)
+- Fix - update peer deps #95
+- Fix - fixes youtube types error #98
 ## v 12.0.1 (2020/09/23)
 
 - [FIX] - apply pr #80 fix - allow multiple instances
