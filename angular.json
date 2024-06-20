@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-youtube-player-project:build"
+            "buildTarget": "ngx-youtube-player-project:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-youtube-player-project:build:production"
+              "buildTarget": "ngx-youtube-player-project:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-youtube-player-project:build"
+            "buildTarget": "ngx-youtube-player-project:build"
           }
         },
         "test": {

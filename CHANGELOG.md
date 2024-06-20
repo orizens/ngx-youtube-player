@@ -1,3 +1,9 @@
+
+## v 17.0.0 (2024/06/20)
+
+- upgrade - bump to version 17
+- chore - now using "ivy partial" mode
+
 ## v 13.0.0 (2024/06/20)
 
 - upgrade - bump to version 13
