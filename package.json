@@ -28,7 +28,6 @@
     "@scarf/scarf": "^1.3.0",
     "@types/youtube": "^0.0.50",
     "core-js": "^2.5.4",
-    "karma-spec-reporter": "0.0.32",
     "rxjs": "^7.8.1",
     "tslib": "^2.6.3",
     "zone.js": "~0.14.7"
