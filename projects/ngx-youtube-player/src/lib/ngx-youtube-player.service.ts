@@ -133,7 +133,7 @@ export class YoutubePlayerService {
     const onYouTubeIframeAPIReady = () => {
       if (win()) {
         win()["onYouTubeIframeAPIReadyCalled"] = true;
-        this.api.next();
+        this.api.next(YouTubePlayerRef());
       }
     };
     win()["onYouTubeIframeAPIReady"] = onYouTubeIframeAPIReady;
@@ -142,7 +142,7 @@ export class YoutubePlayerService {
      * This is to prevent player not initializing issue when another player got initialized in other place
      */
     if (win()["onYouTubeIframeAPIReadyCalled"]) {
-      this.api.next();
+      this.api.next(YouTubePlayerRef());
     }
   }
 }
