@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from "@angular/core";
 import { ReplaySubject } from "rxjs";
-import { IPlayerApiScriptOptions, IPlayerOutputs, IPlayerSize } from "./models";
+import { IPlayerApiScriptOptions, IPlayerOutputs, IPlayerSize } from "./types";
 
 export function win() {
   return window;

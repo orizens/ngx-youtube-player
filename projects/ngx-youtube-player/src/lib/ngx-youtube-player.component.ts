@@ -5,10 +5,8 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnChanges,
   Output,
   Renderer2,
-  SimpleChanges
 } from '@angular/core';
 import {
   YoutubePlayerService,
@@ -16,11 +14,13 @@ import {
 } from './ngx-youtube-player.service';
 
 @Component({
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'youtube-player',
   template: `
     <div id="yt-player-ngx-component"></div>
-  `
+  `,
+  providers: [YoutubePlayerService],
 })
 export class YoutubePlayerComponent implements AfterContentInit {
   @Input() videoId = '';

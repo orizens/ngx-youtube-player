@@ -26,7 +26,7 @@ describe('YoutubePlayerService', () => {
       .createSpy('YTPlayer')
       .and.callFake((id: string, params: any) => params),
     PlayerState: 1
-  };
+  } as any;
 
   it('should create an instance of YoutubePlayerService', () => {
     const service = new YoutubePlayerService(zone);
@@ -47,7 +47,7 @@ describe('YoutubePlayerService', () => {
     const actual = service.api;
     spyOn(service.api, 'next');
     win()['onYouTubeIframeAPIReady']();
-    expect(service.api.next).toHaveBeenCalledWith(global['YT']);
+    expect(service.api.next).toHaveBeenCalledWith(global['YT'] as any);
   });
 
   it('should generate a unique id', () => {

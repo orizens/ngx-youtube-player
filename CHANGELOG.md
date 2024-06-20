@@ -1,4 +1,8 @@
 
+## v 17.1.0 (2024/06/20)
+
+- [NEW] - now using standalone component (not module)
+
 ## v 17.0.0 (2024/06/20)
 
 - upgrade - bump to version 17
