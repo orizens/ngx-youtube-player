@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
-import { YoutubePlayerComponent } from "ngx-youtube-player";
+import {YoutubePlayerComponent} from "../../projects/ngx-youtube-player/src/lib/ngx-youtube-player.component";
 
 @Component({
-  standalone: true,
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
+  standalone: true,
   imports: [YoutubePlayerComponent]
 })
 export class AppComponent {
